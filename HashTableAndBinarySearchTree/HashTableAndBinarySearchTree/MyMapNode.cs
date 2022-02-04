@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace HashTableAndBinarySearchTree
 {
-    public class BinarysearchTree<T> where T : IComparable<T>
+    public class BST<T> where T : IComparable<T>
     {
+
         public T nodeData { get; set; }
-        public BinarysearchTree<T> leftTree { get; set; }
+        public BST<T> leftTree { get; set; }
 
-        public BinarysearchTree<T> rightTree { get; set; }
+        public BST<T> rightTree { get; set; }
 
-        public BinarysearchTree(T data)
+        public BST(T data)
         {
             this.nodeData = data;
             this.leftTree = null;
@@ -28,24 +29,30 @@ namespace HashTableAndBinarySearchTree
             {
                 if (this.leftTree == null)
                 {
-                    this.leftTree = new BinarysearchTree<T>(item);
+                    this.leftTree = new BST<T>(item);
                 }
                 else
                 {
                     this.leftTree.Insert(item);
+                    leftCount++;
                 }
             }
             else
             {
                 if (this.rightTree == null)
                 {
-                    this.rightTree = new BinarysearchTree<T>(item);
+                    this.rightTree = new BST<T>(item);
                 }
                 else
                 {
                     this.rightTree.Insert(item);
+                    rightCount++;
                 }
             }
+        }
+        public void GetSize()
+        {
+            Console.WriteLine("Size " + " " + (1 + this.leftCount + this.rightCount));
         }
 
         public void Display()
