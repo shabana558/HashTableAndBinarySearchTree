@@ -12,10 +12,11 @@ namespace HashTableAndBinarySearchTree
         {
 
             Console.WriteLine("***Hashing Problem***");
-            Console.WriteLine("***USE CASE 1-To find frequency of words *** ");
+            Console.WriteLine("***USE CASE 1-To find frequency of words in a sentence*** ");
+            Console.WriteLine("***USE CASE 2-To find frequency of words in a paragraph** ");
             Console.WriteLine("Enter the option");
             int num = Convert.ToInt32(Console.ReadLine());
-          MapNode<string, int> MyMapNode = new MapNode<string, int>(6);
+            MapNode<string, int> myMapNode = new MapNode<string, int>(6);
             switch (num)
             {
                 case 1:
@@ -23,29 +24,62 @@ namespace HashTableAndBinarySearchTree
                     int count = 1;
                     foreach (string i in words)
                     {
-                        count = MyMapNode.CheckHash(i);
+                        count = myMapNode.CheckHash(i);
                         if (count > 1)
                         {
-                            MyMapNode.Add(i, count);
+                            myMapNode.Add(i, count);
                         }
                         else
                         {
-                            MyMapNode.Add(i, 1);
+                            myMapNode.Add(i, 1);
                         }
                     }
 
                     IEnumerable<string> uniqueItems = words.Distinct<string>();
                     foreach (var i in uniqueItems)
                     {
-                        MyMapNode.Display(i);
+                        myMapNode.Display(i);
                     }
                     break;
+                case 2:
+
+                    MapNode<string, int> myMap = new MapNode<string, int>(10);
+                    string[] Paragraph;
+                    string input = "Paranoids are not paranoid because they are paranoid but because they keep putting themselves deliberately into paranoid avoidable situations";
+                    Paragraph = input.Split(' ');
+                    //Given string input
+
+                    int counts = 1;
+                    foreach (string i in Paragraph)
+                    {
+                        counts = myMap.CheckHash(i);
+                        if (counts > 1)
+                        {
+                            myMap.Add(i, counts);
+                        }
+                        else
+                        {
+                            myMap.Add(i, 1);
+                        }
+                    }
+                    Console.WriteLine("\n---------Frequency of words in paragraph---------\n");
+                    IEnumerable<string> distinct = Paragraph.Distinct<string>();
+                    foreach (var i in distinct)
+                    {
+                        myMap.Display(i);
+                    }
+
+                    break;
+
                 default:
                     Console.WriteLine("Enter the valid option!!!");
                     break;
+
             }
+
             Console.ReadLine();
         }
     }
+    
     
 }
